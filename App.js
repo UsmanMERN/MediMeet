@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+
 import AppNavigator from './src/AppNavigator/AppNavigator'
+import AuthContextProvier from "./src/context/AuthContext"
 
 export default function App() {
   return (
-    <AppNavigator />
+    <AuthContextProvier>
+      <AppNavigator />
+    </AuthContextProvier>
   )
 }
 

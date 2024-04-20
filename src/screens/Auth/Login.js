@@ -1,14 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import bgImage from '../../assets/loginbg.png';
 import Colors from '../../utils/Colors';
 
-export default function Login() {
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import { storeData } from '../../utils/Store';
+import Snackbar from 'react-native-snackbar';
+import { useAuthContext } from '../../context/AuthContext';
 
-    const handleLogin = () => {
-        console.log('loginuser')
+export default function Login() {
+    const { dispatch } = useAuthContext()
+    const [isLoading, setIsLoading] = useState(false)
+
+
+
+    useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: '960809366441-mvq3ad623n6m88rbukvr6ussgrbr4ppt.apps.googleusercontent.com',
+        });
+    }, [])
+
+    async function handleLogin() {
+        try {
+            setIsLoading(true)
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+
+            const { idToken } = await GoogleSignin.signIn();
+
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+            await auth().signInWithCredential(googleCredential);
+
+            const currentUser = auth().currentUser;
+
+            if (currentUser) {
+                await storeData("login", 'true');
+
+                await dispatch({ type: "LOGIN", payload: currentUser });
+
+                Snackbar.show({
+                    text: 'Login Successfully',
+                    duration: Snackbar.LENGTH_SHORT,
+                    backgroundColor: Colors.PRIMARY,
+                    textAlign: 'center',
+                });
+                console.log('currentUser', currentUser)
+            } else {
+                console.error("Unable to retrieve current user after sign-in.");
+            }
+        } catch (error) {
+            console.error("Error occurred during Google sign-in:", error);
+        } finally {
+            setIsLoading(false)
+        }
     }
+
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>

@@ -12,7 +12,20 @@
           "package_name": "com.medimeet"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "960809366441-4i40prsag460oj36u55k1dic4dvo21it.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medimeet",
+            "certificate_hash": "0144711438c017ae91b185bc6560af137e601a1c"
+          }
+        },
+        {
+          "client_id": "960809366441-mvq3ad623n6m88rbukvr6ussgrbr4ppt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCGsDz3F25pAQ5fADaizV5XtamkzC4FjhA"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960809366441-mvq3ad623n6m88rbukvr6ussgrbr4ppt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
