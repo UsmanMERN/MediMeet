@@ -1,10 +1,14 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import bgImage from '../../assets/loginbg.png';
 import Colors from '../../utils/Colors';
 
 export default function Login() {
+
+    const handleLogin = () => {
+        console.log('loginuser')
+    }
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -13,8 +17,10 @@ export default function Login() {
             <View style={styles.bottomTextContainer}>
                 <Text style={styles.title}>Your Ultimate Doctor</Text>
                 <Text style={styles.subtitle}>Book Your Appointments</Text>
-                <Text style={styles.description}>Book your appointments effortlessly and manage your health journey.</Text>
-                <TouchableOpacity style={styles.loginButton} >
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.description}>Book your appointments effortlessly and manage your health journey.</Text>
+                </View>
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
                     <Text style={styles.loginText}>Sign in with Google</Text>
                 </TouchableOpacity>
             </View>
@@ -72,10 +78,19 @@ const styles = StyleSheet.create({
         borderRadius: 99,
         marginTop: 25,
         paddingHorizontal: 30,
+        width: Dimensions.get('screen').width * 0.6
+    },
+    loginText: {
+        color: Colors.white,
+        fontWeight: 'bold',
+        fontSize: 12,
     },
     description: {
         color: "#000",
         textAlign: 'center',
-        fontSize: 12
+        fontSize: 12,
+    },
+    descriptionContainer: {
+        width: Dimensions.get('screen').width
     }
 });

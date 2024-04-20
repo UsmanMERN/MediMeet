@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960809366441",
+    "project_id": "medimeetapp",
+    "storage_bucket": "medimeetapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960809366441:android:8569d8305fa71e533fcab8",
+        "android_client_info": {
+          "package_name": "com.medimeet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGsDz3F25pAQ5fADaizV5XtamkzC4FjhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
