@@ -64,3 +64,29 @@ yarn-error.log
 
 # testing
 /coverage
+
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+ 
+# Android/IntelliJ
+#
+*.jsbundle
+ 
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
+ 
+# Temporary files created by Metro to check the health of the file watcher
+ 
+# testing
+/coverage
+ 
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
