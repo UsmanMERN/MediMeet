@@ -9,9 +9,12 @@ import auth from '@react-native-firebase/auth';
 import { storeData } from '../../utils/Store';
 import Snackbar from 'react-native-snackbar';
 import { useAuthContext } from '../../context/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
     const { dispatch } = useAuthContext()
+    const navigation = useNavigation();
+
     const [isLoading, setIsLoading] = useState(false)
 
 
@@ -46,7 +49,6 @@ export default function Login() {
                     backgroundColor: Colors.PRIMARY,
                     textAlign: 'center',
                 });
-                console.log('currentUser', currentUser)
             } else {
                 console.error("Unable to retrieve current user after sign-in.");
             }
@@ -68,7 +70,7 @@ export default function Login() {
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.description}>Book your appointments effortlessly and manage your health journey.</Text>
                 </View>
-                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin} disabled={isLoading}>
                     <Text style={styles.loginText}>Sign in with Google</Text>
                 </TouchableOpacity>
             </View>
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         alignItems: 'center',
         backgroundColor: "#e5e5e5",
+        position: 'relative',
     },
     imageContainer: {
         marginBottom: 20,
@@ -96,12 +99,14 @@ const styles = StyleSheet.create({
     bottomTextContainer: {
         alignItems: 'center',
         marginTop: -70,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.WHITE,
         padding: 25,
         width: "100%",
         height: "40%",
         borderTopEndRadius: 20,
-        borderTopStartRadius: 20
+        borderTopStartRadius: 20,
+        position: 'absolute',
+        bottom: 0,
     },
     title: {
         fontSize: 18,
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 10,
         justifyContent: 'center',
-        backgroundColor: "#6857E8",
+        backgroundColor: Colors.PRIMARY,
         padding: 10,
         borderRadius: 99,
         marginTop: 25,
@@ -129,7 +134,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('screen').width * 0.6
     },
     loginText: {
-        color: Colors.white,
+        color: Colors.WHITE,
         fontWeight: 'bold',
         fontSize: 12,
     },
