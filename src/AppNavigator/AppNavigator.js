@@ -11,8 +11,9 @@ import { getData } from '../utils/Store';
 import Colors from '../utils/Colors';
 
 // screens
-import Home from '../screens/Frontend/Home';
-import Login from '../screens/Auth/Login';
+import FrontendNavigator from '../screens/Frontend/Navigations/FrontendNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from '../screens/Auth/AuthNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,13 +48,13 @@ export default function AppNavigator() {
         )
     }
     return (
-        <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
-            {isAuthenticated ? (
-                <Stack.Screen name="Home" component={Home} options={{ title: 'Home' }} />
+    <NavigationContainer>
+         {isAuthenticated ? (
+                <FrontendNavigator />
             ) : (
-                <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }} />
+                <AuthNavigator />
             )}
-        </Stack.Navigator>
+    </NavigationContainer>
     );
 }
 
